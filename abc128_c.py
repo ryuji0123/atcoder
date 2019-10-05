@@ -11,7 +11,7 @@ def countMatchedSwitch(sw_status, switch, index):
 if __name__ == '__main__':
     N, M = [int(i) for i in input().split()]
     s = []
-    for i in range(int(M)):
+    for i in range(M):
         data = input().split()
         s.append(data[1:])
     p = [int(i) for i in input().split()]
