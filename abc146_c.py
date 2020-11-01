@@ -1,3 +1,6 @@
+# time: O(log(10^9))
+# space: O(1)
+
 def solve():
     ret = 0
     left, right = 0, pow(10, 9) + 1
