@@ -1,19 +1,20 @@
+def solve():
+    ret = 0
+    left, right = 0, pow(10, 9) + 1
+    while left < right:
+        mid = left + right >> 1
+        d = 1
+        tmp = mid
+        while tmp // 10:
+            tmp //= 10
+            d += 1
+        price = A * mid + B * d
+        if price <= X:
+            ret = max(ret, mid)
+            left = mid + 1
+        else:
+            right = mid
+    print(ret)
+
 A, B, X = map(int, input().split())
-ret = 0
-N = pow(10, 9)
-n = list(str(N))
-if A * N + B * len(n) <= X:
-    print(N)
-    exit()
-while X < A * N + B * len(n) and int(''.join(n)) != 0:
-    N //= 10
-    n = list(str(N))
-for idx in range(len(n)):
-    idx = int(idx)
-    while True: 
-        n[idx] = str(int(n[idx]) + 1)
-        tmp = A * int(''.join(n)) + B * len(n)
-        if X < tmp or n[idx] == '10':
-            n[idx] = str(int(n[idx]) - 1)
-            break
-print(''.join(n))
+solve()
