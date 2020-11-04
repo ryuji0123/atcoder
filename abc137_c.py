@@ -1,10 +1,19 @@
-if __name__ == '__main__':
-    N = int(input())
-    string = {}
+# time: O(N)
+# space: O(N)
+from collections import defaultdict
+
+
+def solve():
+    ref = defaultdict(int)
     ret = 0
-    for n in range(N):
-        cur_char = ''.join(sorted(input()))
-        if cur_char in string:
-            ret += string[cur_char]
-        string[cur_char] = string.get(cur_char, 0) + 1
+    for k in s:
+        ret += ref[k]
+        ref[k] += 1
     print(ret)
+
+
+N = int(input())
+s = []
+for _ in range(N):
+    s.append(str(sorted(input())))
+solve()
