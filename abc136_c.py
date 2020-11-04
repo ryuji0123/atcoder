@@ -1,11 +1,12 @@
-if __name__ == '__main__':
-    N = int(input())
-    H = [int(n) for n in input().split()]
-    nums = H[::-1]
-    ret = 'Yes'
-    for idx, n in enumerate(nums[1:]):
-        if n >= nums[idx] + 2:
-            ret = 'No'
-        elif n == nums[idx] + 1:
-            nums[idx + 1] -= 1
-    print(ret)
+def solve():
+    for i in range(N - 2, -1, -1):
+        if A[i + 1] < A[i] - 1:
+            print('No')
+            return
+        if A[i + 1] == A[i] - 1:
+            A[i] -= 1
+    print('Yes')
+
+N = int(input())
+A = list(map(int, input().split()))
+solve()
