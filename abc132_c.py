@@ -1,4 +1,11 @@
-if __name__ == '__main__':
-    N = int(input())
-    d = sorted([int(i) for i in input().split()])
+def solve():
+    if N % 2 == 1:
+        print(0)
+        return
+    d.sort()
     print(d[N // 2] - d[N // 2 - 1])
+
+
+N = int(input())
+d = list(map(int, input().split()))
+solve()
