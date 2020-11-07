@@ -1,17 +1,18 @@
-def getDivisableCount(min_bound, max_bound, div):
-    return max_bound // div - (min_bound - 1) // div
+from math import gcd
 
-def LCM(a, b):
-    return a * b // GCD(a, b)
+def lcm(x, y):
+    return (x * y) // gcd(x, y)
 
-def GCD(a, b):
-    if a > b:
-        a, b = b, a
-    while b % a != 0:
-        a, b = b % a, a
-    return a
 
-if __name__ == '__main__':
-    A, B, C, D = [int(i) for i in input().split()]
-    ret = (B - A + 1) - getDivisableCount(A, B, C) - getDivisableCount(A, B, D) + getDivisableCount(A, B, LCM(C, D))
+def solve():
+    l = lcm(C, D)
+    ret = B - A + 1
+    ret -= B // C - (A - 1) // C
+    ret -= B // D - (A - 1) // D
+    ret += B // l - (A - 1) // l
     print(ret)
+
+
+
+A, B, C, D = map(int, input().split())
+solve()
