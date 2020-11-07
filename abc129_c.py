@@ -1,24 +1,22 @@
-BASE =  1000000007
+# time: O(N)
+# space: O(N)
 
-if __name__ == '__main__':
-    N, M = [int(i) for i in input().split()]
-    not_available = []
-    for i in range(M):
-        not_available.append(int(input()))
-    x = 0
-    y = 1
-    predicted_next = 1 
-    is_available = [True] * N
-    for idx in not_available:
-        is_available[idx - 1] = False
-    
-    for flag in is_available:
-        if flag:
-            z = x + y
-            x = y
-            y = z
+def solve():
+    MOD = pow(10, 9) + 7
+    dp = [1] + [0] * N
+    for i in range(1, N + 1):
+        if i in a:
+            dp[i] = float('inf')
         else:
-            x = y
-            y = 0
+            if 0 <= i - 1 and dp[i - 1] != float('inf'):
+                dp[i] = (dp[i] + dp[i - 1]) % MOD
+            if 0 <= i - 2 and dp[i - 2] != float('inf'):
+                dp[i] = (dp[i] + dp[i - 2]) % MOD
+    print(dp[-1])
 
-    print(y % BASE)
+
+N, M = map(int, input().split())
+a = set()
+for _ in range(M):
+    a.add(int(input()))
+solve()
