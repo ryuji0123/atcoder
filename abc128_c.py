@@ -1,28 +1,18 @@
-import numpy as np
-
-def countMatchedSwitch(sw_status, switch, index):
+def solve():
     ret = 0
-    for s in switch[index]:
-        if int(sw_status[int(s) - 1]) == 1:
-            ret += 1
-    return ret % 2
+    for i in range(pow(2, N)):
+        used = [0] * N
+        for j in range(N):
+            if i >> j & 1:
+                used[j] = 1
+        ret += all([p[idx] == sum([used[s - 1] for s in S[idx]]) % 2 for idx in range(M)])
+    print(ret)
 
 
-if __name__ == '__main__':
-    N, M = [int(i) for i in input().split()]
-    s = []
-    for i in range(M):
-        data = input().split()
-        s.append(data[1:])
-    p = [int(i) for i in input().split()]
-    
-    ret = 0
-    for i in range(2**N):
-        is_all_passed = True
-        sw_status = bin(i)[2:].zfill(N)
-        for j in range(M):
-            if p[j] != countMatchedSwitch(sw_status, s, j):
-                is_all_passed = False
-        if is_all_passed:
-            ret += 1
-    print("{ret}".format(ret=ret))
+N, M = map(int, input().split())
+S = []
+for _ in range(M):
+    tmp = list(map(int, input().split()))
+    S.append(tmp[1: ])
+p = list(map(int, input().split()))
+solve()
