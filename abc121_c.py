@@ -1,16 +1,21 @@
-
-if __name__ == '__main__':
-    N, M = [int(n) for n in input().split()]
-    A = []
-    for n in range(N):
-        A.append([int(n) for n in input().split()])
-    
-    vals = sorted(A, key=lambda x: x[0])
-    ret = 0
-    for v in vals:
-        if v[1] < M:
-            M -= v[1]
-            ret += v[0] * v[1]
+def solve():
+    costs.sort(key=lambda x: x[0])
+    ret = idx = 0
+    rest = M
+    while rest:
+        A, B = costs[idx]
+        if B < rest:
+            ret += A * B
+            rest -= B
         else:
-            print(ret + v[0] * M)
-            exit()
+            print(ret + A * rest)
+            return
+        idx += 1
+
+
+N, M = map(int, input().split())
+costs = []
+for _ in range(N):
+    A, B = map(int, input().split())
+    costs.append([A, B])
+solve()
