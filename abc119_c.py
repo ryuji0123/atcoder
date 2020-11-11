@@ -1,15 +1,28 @@
-INF = pow(10, 9)
+# time: O(4^N)
+# space: O(4^N)
 
-def dfs(cur, a, b, c):
-    if cur == N:
-        return abs(a - A) + abs(b - B) + abs(c - C) - 30 if min(a, b ,c) > 0 else INF
-    ret0 = dfs(cur + 1, a, b, c)
-    ret1 = dfs(cur + 1, a + length[cur], b, c) + 10
-    ret2 = dfs(cur + 1, a, b + length[cur], c) + 10
-    ret3 = dfs(cur + 1, a, b, c + length[cur]) + 10
-    return min(ret0, ret1, ret2, ret3)
+from itertools import product
 
-if __name__ == '__main__':
-    N, A, B, C = map(int, input().split())
-    length = [int(input()) for i in range(N)]
-    print(dfs(0, 0, 0, 0))
+
+def solve():
+    ret = float('inf')
+    for p in product(range(4),repeat=N):
+        tmp = [0, 0, 0]
+        cost = 0
+        for i, v in enumerate(p):
+            if v == 3:
+                continue
+            cost += (0 < tmp[v]) * 10
+            tmp[v] += l[i]
+        if any([t == 0 for t in tmp]):
+            continue
+        ret = min([ret, cost + sum(abs(tmp[idx] - target[idx]) for idx in range(3))])
+    print(ret)
+
+
+N, A, B, C = map(int, input().split())
+target = sorted([A, B, C])
+l = []
+for _ in range(N):
+    l.append(int(input()))
+solve()
