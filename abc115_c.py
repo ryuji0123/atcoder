@@ -1,7 +1,10 @@
-if __name__ == '__main__':
-    N, K = map(int, input().split())
-    height = sorted([int(input()) for n in range(N)])
-    s =  [ height[idx + K - 1] - h for idx, h in enumerate(height)
-            if idx + K - 1 < len(height)
-    ]
-    print(min(s))
+def solve():
+    h.sort(reverse=True)
+    print(min([h[i] - h[i + K - 1] for i in range(N - K + 1)]))
+
+
+N, K = map(int, input().split())
+h = []
+for _ in range(N):
+    h.append(int(input()))
+solve()
