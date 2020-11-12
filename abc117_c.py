@@ -1,9 +1,8 @@
-if __name__ == '__main__':
-    N, M = map(int, input().split())
-    X = sorted(list(map(int, input().split())))
-    if len(X) <= N:
-        print(0)
-        exit()
+def solve():
+    X.sort()
+    print(sum(sorted([xj - xi for xi, xj in zip(X, X[1: ])], reverse=True)[N - 1: ]))
 
-    diff = sorted([X[idx + 1] - x for idx, x in enumerate(X[:-1])], reverse=True)
-    print(sum(diff[N - 1:]))
+
+N, M = map(int, input().split())
+X = list(map(int, input().split()))
+solve()
