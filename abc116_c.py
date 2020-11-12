@@ -1,16 +1,23 @@
-def merge(height):
-    if len(height) == 0:
-        return 0
-    if len(height) == 1:
-        return height[0]
-    m = min(height)
-    m_idx = height.index(m)
-    height = [h - m for h in height]
-    left_height = height[:m_idx]
-    right_height = height[m_idx + 1:]
-    return  merge(left_height) + merge(right_height) + m
+# time: O(N^2)
+# space: O(1)
 
-if __name__ == '__main__':
-    N = int(input())
-    h = list(map(int, input().split()))
-    print(merge(h))
+def solve():
+    ret = 0
+    while sum(h):
+        l = 0
+        while l < len(h) - 1 and h[l] == 0:
+            l += 1
+        m = h[l]
+        r = l
+        while r < len(h) and h[r] != 0:
+            m = min(m, h[r])
+            r += 1
+        for i in range(l, r):
+            h[i] -= m
+        ret += m
+    print(ret)
+
+
+N = int(input())
+h = list(map(int, input().split()))
+solve()
