@@ -1,18 +1,28 @@
-def appendedList(arr, val):
-    ret = arr.copy()
-    ret.append(val)
-    return ret
+# time: O(3^10)
+# space: O(3^10)
 
-def dfs(cur, target, ret):
-    if 0 < len(cur):
-        if target < int(''.join(map(str, cur))):
-            return 0
-    const = 1 if (3 in cur and 5 in cur and 7 in cur) else 0
-    ret3 = dfs(appendedList(cur, 3), target, ret)
-    ret5 = dfs(appendedList(cur, 5), target, ret)
-    ret7 = dfs(appendedList(cur, 7), target, ret)
-    return ret + const + ret3 + ret5 + ret7
+def solve():
+    def dfs():
+        if 0 < len(nums) and N < int(''.join(nums)):
+            return
+        ret[0] += all([1 <= counter[k] for k in keys])
 
-if __name__ == '__main__':
-    N = int(input())
-    print(dfs([], N, 0))
+        for k in keys:
+            nums.append(k)
+            counter[k] += 1
+            dfs()
+            nums.pop()
+            counter[k] -= 1
+
+
+    keys = ['7', '5', '3']
+    counter = {k: 0 for k in keys}
+    nums = []
+    ret = [0]
+    dfs()
+    print(ret[0])
+
+
+N = input()
+N = int(N)
+solve()
