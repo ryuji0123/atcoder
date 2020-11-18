@@ -1,9 +1,12 @@
 def solve():
-    m = (A[N // 2] + A[N // 2 - 1]) // 2 if N % 2 == 0 else A[N // 2]
-    print(sum([abs(a - m) for a in A]))
+    ret = 0
+    for a in A:
+        while a % 2 == 0:
+            a //= 2
+            ret += 1
+    print(ret)
 
 
-N = int(input())
+N = input()
 A = list(map(int, input().split()))
-A = sorted([a - (idx + 1) for idx, a in enumerate(A)])
 solve()
