@@ -1,7 +1,4 @@
 def cmp(sa, sb):
-    if sa == sb:
-        return 0
-
     idx = 0
     na = len(sa)
     nb = len(sb)
@@ -11,6 +8,8 @@ def cmp(sa, sb):
             idx += 1
             continue
         return 1 if sb < sa else -1
+    if sa == sb:
+        return 0
     return 1 if nb < na else -1
 
 def solve():
