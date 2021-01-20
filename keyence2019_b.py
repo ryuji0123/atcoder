@@ -1,14 +1,12 @@
 def solve():
-    idx = 0
-    target = 'keyence'
-    N = len(target)
-    for s in S:
-        idx += s == target[idx]
-        if idx == N:
-            print('YES')
-            return
+    T = 'keyence'
+    ls = len(S)
+    for i in range(ls):
+        for j in range(i, ls + 1):
+            if S[:i ] + S[j: ] == T:
+                print('YES')
+                return
     print('NO')
-
 
 S = input()
 solve()
